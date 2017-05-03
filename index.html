@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{padding:0;margin:0}
+			.wrapper{width:300px;margin:200px auto}
+			.littleH{position:relative}
+			.bodyH{position:absolute;width:240px;height:400px;border:5px solid #000;
+			       border-radius:115px;background:rgb(249,217,70);overflow: hidden;;}
+		    .bodyH .condoleBelt{position:absolute}
+		    .bodyH .trousers{                  /*小黄人底部蓝色的半椭圆*/
+		    	position:absolute;
+		    	bottom:0;width:100%;
+		    	height:100px;
+		    	border-top:6px solid #000;
+		    	background:rgb(32,116,160);
+		    }
+		    .trousers_top{width:160px;height:60px;      /*小黄人裤带的上面蓝色的矩形*/
+		                   border:6px solid #000;
+		                   border-bottom:none;
+		                   border-radius:0 0 5px 5px ;
+		                   background:rgb(32,116,160);
+		                   position: absolute;
+		                   bottom:100px;
+		                   left:34px   
+		                      }
+		    .bodyH .condoleBelt .left,.bodyH .condoleBelt .right{width:16px; /*小黄人两边的吊带*/
+			                 height:100px;
+			                 border:5px solid #000;
+			                 background:rgb(32,116,160);
+			                 position: absolute;
+			                 top:-123px;
+			                 right:-227px;
+			                 z-index: 2;
+			                 transform: rotate(45deg);
+		                 }
+		    .bodyH .condoleBelt .left {top:-129px;
+		                              left:13px;
+		                              transform: rotate(-45deg);}                               
+		    .bodyH .condoleBelt .left:after, .bodyH .condoleBelt .right:after{content:"";  /*小黄人吊带的黑点*/
+		                               width:8px;
+		                               height:8px;
+		                               border-radius:50%;
+		                               background:#000;
+		                               position: absolute;
+		                               top:88px;
+		                               left:4px;
+		                                }
+		    .pocket{width:60px;height:45px;border:6px solid #000;border-radius:0 0 25px 25px;
+		            position:absolute;bottom:65px;left:84px;}                            
+		  /*小黄人裤带底部的口袋跟三条线*/  
+		    .line-left{
+		    	      width:30px;
+		    	      height:30px;
+		    	      border-bottom:6px solid #000;
+		    	      border-left:6px solid #000;
+		    	      border-bottom-left-radius: 100px;
+		    	      position: absolute;
+		    	      right:7px;
+		    	      bottom:58px;
+		    	      transform: rotate(-27deg);
+		              } 
+		    .line-right{width:30px;height:30px;
+		                border-bottom:6px solid #000;
+		                border-bottom-right-radius:100px;
+		                border-right:6px solid #000;
+		                position: absolute;
+		                left:7px;
+		                bottom:58px;
+		                transform: rotate(27deg);
+		               } 
+		     .line-bottom{width:6px;
+		                  height:36px;
+		                  background:#000;
+		                  position: absolute;
+		                  bottom:0;
+		                  left:50%;}
+		     .eyes{
+		     	position: relative;z-index: 3;
+		     }             
+		     .eyes .leftEye,.eyes .rightEye{width:85px;     /*最大的眼珠*/
+		                   height:85px;
+		                   border-radius: 50%;
+		                   border:6px solid #000;                 
+		     	          background:#fff;
+		     	          position: absolute;
+		     	          top:60px;
+		     	          left:27px;
+		     }                      
+		    .eyes .rightEye{left:124px;} 
+		    .eyes .leftEye .left_blackEye,.eyes .rightEye .right_blackEye  { /*里面的黑眼珠*/
+		    	           width:40px;
+		    	           height:40px;
+		    	           border-radius: 50%;
+		    	           background:#000;
+		    	           position: absolute;
+		    	           top:22px;left:17px;
+		    	           animation: eyesblackmove 3s ease-in-out infinite;
+		    }   
+		    /*黑眼珠里面的白色眼珠*/
+		     .eyes .leftEye .left_blackEye .left_white,.eyes .rightEye .right_blackEye .right_white{
+		     	           width:20px;height:20px;
+		     	           border-radius: 50%;
+		     	           background:#fff;
+		     	           position: absolute;
+		     	           top:7px;
+		     	           left:17px;
+		     	            animation: eyeswhitemove 3s ease-in-out infinite;
+		     } 
+		      .eyes .leftEye:after,.eyes .rightEye:after{
+		      	           content:"";
+		      	           width:28px;height:18px;background:#000;
+		      	           position: absolute;
+		      	           left:-30px;
+		      	           top:37px;
+		      	           transform: skewX(20deg) rotate(7deg);
+		      }   
+		      .eyes .rightEye:after{
+		      	           left:88px;
+		      	           transform: rotate(-7deg);
+		      } 
+		      
+		       .mouse{position: relative;}   /*嘴巴的样式*/
+		       .mouse .mouse_shape{width:55px;  /*嘴巴的弧度*/
+		                          height:35px;
+		                          border:5px solid #000;
+		                          border-bottom-left-radius:30px;
+		                          background:#fff;
+		                          position:absolute;
+		                          top:175px;
+		                          left:98px;z-index: 3;
+		                          transform:rotate(-35deg);
+		                          animation: mouse_shapemove 3s ease infinite;
+		                        }
+		        .mouse .mouse_shape:before{content: '';  /*遮挡嘴巴上面部分*/
+								  width: 78px;
+								  height: 40px;
+								  position: absolute;
+								  background: red;
+								  border-radius: 50% 50% 0 0;
+								  top: -17px;
+								  left: 10px;
+								  transform: rotate(35deg) translateX(-12px);
+								  background: rgb(249,217,70);
+								  border-bottom: 5px solid #000;
+								   animation: mouse_shape_beforemove 3s ease infinite;
+		                                  } 
+		         .hands{position: relative;}     /*手的样式*/
+		         .hands .leftHand,.hands .rightHand{
+		         	              width:80px;
+		         	              height:80px;position: absolute;
+		         	              left:-32px;
+		         	              top:220px;
+		         	              border:5px solid #000;
+		         	              transform: rotate(-45deg);
+		         	              z-index: -1;
+		         	              background: rgb(249,217,70);
+		         	              border-radius: 25px;
+		         	              animation:handmove 3s ease infinite;
+		         	                      
+		         }
+		         .hands .rightHand{left:195px;top:228px}                                            
+		         .hands .leftHand .leftHand_inner,.hands .rightHand .rightHand_inner{ /*手肘的样式*/
+		         	                width: 55px;
+								    height: 55px;
+								    border: 5px solid #000;
+								    position: absolute;
+								    top: 17px;
+								    left: 41px;
+								    transform: translateX(-24px);
+								    border-radius: 10px;
+								    background: #fff;
+		         }  
+		       .hands .rightHand .rightHand_inner{left: 21px;top: -5px;} 
+		       .feet{position:relative}             /*腿的样式*/
+		       .feet .left_foot,.feet .right_foot{position:absolute;
+		                                width: 36px;
+									    height: 50px;
+									    background: #000;
+									    top: 408px;
+									    left: 90px;
+									    border-bottom-right-radius: 6px;
+                                        border-bottom-left-radius: 9px;
+                                        transform-origin: right top;
+                                        animation:leftfoot 3s ease infinite;
+		                                   }  
+		       .feet .right_foot{left:128px;top:406px; animation:rightfoot 3s ease infinite;}                           
+		       .feet .left_foot:before,.feet .right_foot:before{content:''; /*鞋子左边和右边的样式*/
+		       	                        position: absolute;
+		       	                        left:-36px;
+		       	                        top:14px;
+		       	                        width:60px;height:35px;
+		       	                        background:#000;
+		       	                        border-radius:20px 20px 10px 10px;
+		       	                        transform:rotate(5deg);
+		       	                        
+		       }     
+		       .feet .right_foot:before{left:13px;transform:rotate(-5deg)} 
+		       
+		    /*   .hair{position:relative;}
+		       .hair .left_hair_one{width: 20px;
+				    height: 75px;
+				    position: absolute;
+				    top: -63px;
+				    left: 62px;
+				    border-right: 6px solid #000;
+				    border-bottom: 6px solid #000;
+				    border-bottom-right-radius: 20px;
+				    transform: rotate(-65deg);
+				    }
+		       .hair .left_hair_two{
+		       	    width: 20px;
+				    height: 75px;
+				    position: absolute;
+				    top: -63px;
+				    left: 159px;
+				    border-left: 6px solid #000;
+				    border-bottom: 6px solid #000;
+				    border-bottom-left-radius: 20px;
+				    transform: rotate(65deg);
+		       }  */
+		      
+				
+		  /*小黄人动画效果*/		
+		   /*眼睛左右动画*/
+		  @keyframes eyesblackmove{
+		  	0%{left:0;}
+		  	50%{left:46px;}
+		  	100%{left:0;}
+		  }
+		  @keyframes eyeswhitemove{
+		  	0%{left:2px;}
+		  	50%{left:18px;}
+		  	100%{left:2px;}
+		  }
+		 /*嘴巴动的动画*/
+		 @keyframes mouse_shapemove{
+		 	0%{width:55px;border-bottom-left-radius:30px;}
+		 	50%{width:38px;border-bottom-left-radius:46px;}
+		 	100%{width:55px;border-bottom-left-radius:30px;}
+		 }
+		  @keyframes mouse_shape_beforemove{
+		 	0%{width:78px;top:-17px;left:10px;transform: rotate(35deg) translateX(-12px);}
+		 	50%{width:56px;top:-19px;left:11px;transform: rotate(35deg) translateX(-11px);}
+		 	100%{width:78px;top:-17px;left:10px;transform: rotate(35deg) translateX(-12px);}
+		 }
+		 /*手动的部分*/
+		 @keyframes handmove{
+		 	0%{transform: rotate(-45deg)}
+		 	25%{transform: rotate(-55deg)}
+		 	50%{transform: rotate(-45deg)}
+		 	75%{transform: rotate(-35deg)}
+		 	100%{transform: rotate(-45deg)}
+		 }
+		 /*脚动的部分*/
+		 @keyframes footleftmove{
+		 	0%{transform: rotate(6deg)}
+		 	25%{transform: rotate(0deg)}
+		 	50%{transform: rotate(-6deg)}
+		 	75%{transform: rotate(0deg)}
+		 	100%{transform: rotate(6deg)}
+		 }
+		  @keyframes footrightmove{
+		 	0%{transform: rotate(-6deg)}
+		 	25%{transform: rotate(0deg)}
+		 	50%{transform: rotate(6deg)}
+		 	75%{transform: rotate(0deg)}
+		 	100%{transform: rotate(-6deg)}
+		 }
+		 
+		 @keyframes leftfoot{
+		 	0%{transform: rotate(0deg);}
+		 	50%{transform: rotate(0deg);}
+		 	80%{transform: rotate(6deg);}
+		 	100%{transform: rotate(0deg);}
+		 }
+		 @keyframes rightfoot{
+		 	0%{transform: rotate(0deg);}
+		 	33%{transform: rotate(-6deg);}
+		 	66%{transform: rotate(0deg);}
+		 	100%{transform: rotate(0deg);}
+		 }
+		    
+				
+				                               
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">  <!--容器-->
+			<div class="littleH"><!--小黄人-->
+				<div class="bodyH"><!--身体-->
+					<div class="trousers"><!--裤子-->
+						<div class="condoleBelt"><!--吊带-->
+							<div class="left"></div>
+							<div class="right"></div>
+						</div>
+						<div class="trousers_top"></div><!--裤子突出的矩形部分-->
+						<div class="pocket"></div><!--裤带-->
+						<!--三条线-->
+						<span class="line-left"></span>
+						<span class="line-right"></span>
+						<span class="line-bottom"></span>
+					</div>
+				</div>
+				<div class="hair"><!--头发-->
+					<span class="left_hair_one"></span>
+					<span class="left_hair_two"></span>
+				</div>
+				<div class="eyes"><!--眼睛-->
+					<div class="leftEye"><!--左眼-->
+						<div class="left_blackEye">
+							<div class="left_white"></div>
+						</div>
+					</div>
+					<div class="rightEye"><!--右眼-->
+						<div class="right_blackEye">
+							<div class="right_white"></div>
+						</div>
+					</div>
+				</div>
+				<div class="mouse"><!--嘴巴-->
+					<div class="mouse_shape"></div>
+				</div>
+				<div class="hands"><!--双手-->
+					<div class="leftHand">
+						<div class=leftHand_inner></div>
+					</div>
+					<div class="rightHand">
+						<div class=rightHand_inner></div>
+					</div>
+				</div>
+				<div class="feet"><!--双脚-->
+					<div class="left_foot"></div>
+					<div class="right_foot"></div>
+				</div>
+				<div class="groundShadow"></div><!--鞋底阴影-->
+			</div>
+		</div>
+	</body>
+</html>
